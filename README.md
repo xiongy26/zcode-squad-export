@@ -9,7 +9,7 @@
 | `AGENTS.md` | `~/.zcode/AGENTS.md` | 每个新对话自动注入的队长指令（启用条件、八条铁律、成员速查表） |
 | `agents/*.md` | `~/.zcode/agents/` | 成员定义（当前 6 个：Business-Analyst、architecture-design、coding、code-review、Escalation-Engineer、Mika），以目录内容为准，自动随增减变化 |
 | `探索者小队协作政策.md` | `~/.zcode/` | 完整版政策（机制等价映射、派发模板、机制参数、不变量），AGENTS.md 引用它 |
-| `install.sh` / `pack.sh` / `README.md` | `~/.zcode/squad/` | 安装与打包工具，供以后更新配置后重新打包 |
+| `install.sh` / `install.ps1` / `pack.sh` / `pack.ps1` / `README.md` | `~/.zcode/squad/` | 安装与打包工具，供以后更新配置后重新打包 |
 
 ## 首次安装
 
@@ -22,10 +22,27 @@ bash install.sh
 
 脚本会把目标机上已有的 AGENTS.md、agents 目录、squad 目录自动备份为 `.bak-时间戳` 再覆盖。
 
+### Windows PowerShell
+
+在 PowerShell 中进入解压后的目录并运行：
+
+```powershell
+Set-Location .\zcode-squad-export
+.\install.ps1
+```
+
+如果 PowerShell 的执行策略阻止脚本运行，可仅对本次执行放宽策略：
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
+```
+
+Windows 脚本同样会先备份已有配置，再安装到 `$HOME\.zcode\`。安装完成后请新开一个 ZCode 对话。
+
 ## 更新配置与重新打包
 
 1. 在任意一台装有小队的电脑上直接编辑 `~/.zcode/` 下的配置（或在对话里让队长修改成员定义）。
-2. 重新打包：`bash ~/.zcode/squad/pack.sh [输出目录]`，默认在当前目录生成 `zcode-squad.tar.gz`。打包源是 `~/.zcode/` 下的实际配置，改完即打，无需手动同步文件。
+2. 重新打包：Linux/macOS 使用 `bash ~/.zcode/squad/pack.sh [输出目录]`；Windows PowerShell 使用 `& $HOME\.zcode\squad\pack.ps1 [输出目录]`。默认在当前目录生成 `zcode-squad.tar.gz`。打包源是 `~/.zcode/` 下的实际配置，改完即打，无需手动同步文件。
 3. 把新包拷到其他电脑，解压后运行 `bash install.sh` 覆盖安装（同样会先备份旧配置）。
 
 ## 验证

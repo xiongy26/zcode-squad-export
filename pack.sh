@@ -7,7 +7,7 @@ out="${1:-.}"
 mkdir -p "$out"
 
 squad_dir="$HOME/.zcode/squad"
-for need in "$HOME/.zcode/AGENTS.md" "$HOME/.zcode/探索者小队协作政策.md" "$squad_dir/install.sh" "$squad_dir/README.md" "$squad_dir/pack.sh"; do
+for need in "$HOME/.zcode/AGENTS.md" "$HOME/.zcode/探索者小队协作政策.md" "$squad_dir/install.sh" "$squad_dir/install.ps1" "$squad_dir/README.md" "$squad_dir/pack.sh" "$squad_dir/pack.ps1"; do
   [ -e "$need" ] || { echo "缺少 $need —— 请先在本机运行过 install.sh 再打包"; exit 1; }
 done
 [ -d "$HOME/.zcode/agents" ] || { echo "缺少 ~/.zcode/agents —— 请先运行 install.sh"; exit 1; }
@@ -19,7 +19,7 @@ mkdir -p "$ex/agents"
 cp "$HOME/.zcode/AGENTS.md" "$ex/"
 cp "$HOME/.zcode/agents/"*.md "$ex/agents/"
 cp "$HOME/.zcode/探索者小队协作政策.md" "$ex/"
-cp "$squad_dir/install.sh" "$squad_dir/pack.sh" "$squad_dir/README.md" "$ex/"
+cp "$squad_dir/install.sh" "$squad_dir/install.ps1" "$squad_dir/pack.sh" "$squad_dir/pack.ps1" "$squad_dir/README.md" "$ex/"
 chmod +x "$ex/install.sh" "$ex/pack.sh"
 
 tar -czf "$out/zcode-squad.tar.gz" -C "$stage" zcode-squad-export

@@ -24,7 +24,7 @@ mkdir -p "$HOME/.zcode/agents" "$HOME/.zcode/squad"
 cp AGENTS.md "$HOME/.zcode/AGENTS.md"
 cp agents/*.md "$HOME/.zcode/agents/"
 cp 探索者小队协作政策.md "$HOME/.zcode/探索者小队协作政策.md"
-cp install.sh pack.sh README.md "$HOME/.zcode/squad/"
+cp install.sh install.ps1 pack.sh pack.ps1 README.md "$HOME/.zcode/squad/"
 chmod +x "$HOME/.zcode/squad/install.sh" "$HOME/.zcode/squad/pack.sh"
 
 echo ""
